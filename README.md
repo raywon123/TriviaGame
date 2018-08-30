@@ -1,7 +1,7 @@
 # TriviaGame
 
 [Triva Game](
-https://raywon123.github.io/TrivaGame/ )
+https://raywon123.github.io/TriviaGame/ )
 
 [My Portfolio Page](
 https://raywon123.github.io/portfolio.html )
