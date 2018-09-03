@@ -22,27 +22,13 @@ $(document).ready(function () {
         time--;
         let converted = timeConverter(time);
         $(".display").text(converted);
+
         if (time < 0) {
             $(".display").text("00:00");
             stopAll();
             alert("Time is Up");
 
-            if (count === questions.length - 1) {
-                console.log("last one " + count)
-                isGameStarted = false;
-
-            }
-
-            if (count < questions.length - 1) {
-                console.log("outside2 " + count)
-                count++;
-                if (isNextChosen) {
-                    console.log("inside " + count)
-                    questions[count].displayQuestion();
-                    questions[count].displayChoices();
-
-                }
-            }
+            gameLogic();
         }
     }
 
@@ -102,16 +88,7 @@ $(document).ready(function () {
 
     function resetGame() {
 
-        time = TIMECOUNTDWN;
-
-        $(".display").text("00:08");
-        $(".question").text("");
-        $(".choice1").text("");
-        $(".choice2").text("");
-        $(".choice3").text("");
-        $(".result").text("");
-        $(".answer").text("");
-        $(".score").text("");
+        clear();
 
         guesses = [];
         score = 0;
@@ -165,6 +142,24 @@ $(document).ready(function () {
         }
     }
 
+    function gameLogic() {
+        if (count === questions.length - 1) {
+            console.log("last one " + count)
+            isGameStarted = false;
+
+        }
+
+        if (count < questions.length - 1) {
+            console.log("outside2 " + count)
+            count++;
+            if (isNextChosen) {
+                console.log("inside " + count)
+                questions[count].displayQuestion();
+                questions[count].displayChoices();
+
+            }
+        }
+    }
 
 
     // Object for Questions
@@ -183,9 +178,6 @@ $(document).ready(function () {
             $(".choice1").text(this.choices[0]);
             $(".choice2").text(this.choices[1]);
             $(".choice3").text(this.choices[2]);
-            // console.log(this.choices[0]);
-            // console.log(this.choices[1]);
-            // console.log(this.choices[2]);
         }
 
         this.displayAnswer = function () {
@@ -253,23 +245,8 @@ $(document).ready(function () {
         playGame(questions[count], guess);
         console.log("outside " + count)
 
-
-        if (count === questions.length - 1) {
-            console.log("last one " + count)
-            isGameStarted = false;
-
-        }
-
-        if (count < questions.length - 1) {
-            console.log("outside2 " + count)
-            count++;
-            if (isNextChosen) {
-                console.log("inside " + count)
-                questions[count].displayQuestion();
-                questions[count].displayChoices();
-
-            }
-        }
+        gameLogic();
+       
 
 
     });
