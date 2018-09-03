@@ -5,7 +5,7 @@ $(document).ready(function () {
         $(".start").on("click", start);
         $(".stop").on("click", stopAll);
         $(".next").on("click", next);
-        $(".reset").on("click", reset);
+        $(".reset").on("click", resetGame);
     };
 
 
@@ -22,7 +22,28 @@ $(document).ready(function () {
         time--;
         let converted = timeConverter(time);
         $(".display").text(converted);
+        if (time < 0) {
+            $(".display").text("00:00");
+            stopAll();
+            alert("Time is Up");
 
+            if (count === questions.length - 1) {
+                console.log("last one " + count)
+                isGameStarted = false;
+
+            }
+
+            if (count < questions.length - 1) {
+                console.log("outside2 " + count)
+                count++;
+                if (isNextChosen) {
+                    console.log("inside " + count)
+                    questions[count].displayQuestion();
+                    questions[count].displayChoices();
+
+                }
+            }
+        }
     }
     function start() {
         isGameStarted = true;
@@ -32,15 +53,15 @@ $(document).ready(function () {
 
     function next() {
         if (isGameStarted) {
-            reset();
+            clear();
             intervalId = setInterval(countDown, 1000);
             intervalId2 = setInterval(games, 1000);
             isNextChosen = true;
         }
         else {
             stopAll();
-            reset();
-         
+            resetGame();
+
         }
     }
 
@@ -62,11 +83,11 @@ $(document).ready(function () {
 
     }
 
-    function reset() {
+    function clear() {
 
-        time = 16;
+        time = 8;
 
-        $(".display").text("00:15");
+        $(".display").text("00:08");
         $(".question").text("");
         $(".choice1").text("");
         $(".choice2").text("");
@@ -74,7 +95,29 @@ $(document).ready(function () {
         $(".result").text("");
         $(".answer").text("");
         $(".score").text("");
-    
+
+
+    }
+
+    function resetGame() {
+
+        time = 8;
+
+        $(".display").text("00:08");
+        $(".question").text("");
+        $(".choice1").text("");
+        $(".choice2").text("");
+        $(".choice3").text("");
+        $(".result").text("");
+        $(".answer").text("");
+        $(".score").text("");
+
+        guesses = [];
+        score = 0;
+        count = 0;
+
+        isGameStarted = false;
+        isNextChosen = false;
 
     }
 
@@ -187,8 +230,8 @@ $(document).ready(function () {
 
     isGameStarted = false;
     isNextChosen = false;
-    let time = 16;
-    reset();
+    let time = 8;
+    resetGame();
 
 
     // for (let i = 0; i < questions.length; i++) {
