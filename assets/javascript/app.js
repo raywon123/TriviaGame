@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         time++;
         let converted = timeConverter(time);
-        $(".display").text(converted);
+        $(".displayTime").text(converted);
 
     }
 
@@ -21,13 +21,12 @@ $(document).ready(function () {
 
         time--;
         let converted = timeConverter(time);
-        $(".display").text(converted);
+        $(".displayTime").text(converted);
 
-        if (time < 0) {
-            $(".display").text("00:00");
+        if (time < 0) {          
             stopAll();
-            alert("Time is Up");
-
+            $(".displayTime").text("00:00");
+            $(".message").text("Time is Up");
             gameLogic();
         }
     }
@@ -35,20 +34,21 @@ $(document).ready(function () {
     function start() {
         isGameStarted = true;
         intervalId = setInterval(countDown, 1000);
-        intervalId2 = setInterval(display, 1000);
+        intervalId2 = setInterval(display, 300);
     }
 
     function next() {
         if (isGameStarted) {
             clear();
             intervalId = setInterval(countDown, 1000);
-            intervalId2 = setInterval(display, 1000);
+            intervalId2 = setInterval(display, 300);
             isNextChosen = true;
         }
         else {
             stopAll();
             resetGame();
-            alert("Game Over. Please click Start to restart the game.");
+            // alert("Game Over. Please click Start to restart the game.");
+            $(".message").text("Game Over. Please click Start to restart the game.");
 
         }
     }
@@ -67,7 +67,7 @@ $(document).ready(function () {
 
         time = TIMECOUNTDWN;
 
-        $(".display").text("00:08");
+        $(".displayTime").text("00:08");
         $(".question").text("");
         $(".choice1").text("");
         $(".choice2").text("");
@@ -240,9 +240,8 @@ $(document).ready(function () {
 
         gameLogic();
        
-
-
     });
+
     console.log("final score = " + score);
 
 
