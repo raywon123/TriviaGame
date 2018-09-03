@@ -25,15 +25,23 @@
                     <h3 class="card-header">Trivia Game</h3>
 
                     <div class="card-body">
-                        <div id="display"></div>
+                        <div class="display"></div>
                         <br><br>
 
                     </div>
                     <div>
-                        <h3 id="question"></h3>
-                        <h3 id="choice"></h3>
-                        <h3 id="answer"></h3>
-                        <h3 id="score"></h3>
+                        <p class="question"></p>
+                        <!-- <p class="choice1"></p>
+                        <p class="choice2"></p>
+                        <p class="choice3"></p> -->
+                        <ul>
+                            <li><button type="button" class="btn btn-dark choice" value="A">A</button><span class="choice1"></span></li>
+                            <li><button type="button" class="btn btn-dark choice" value="B">B</button><span class="choice2"></span></li>
+                            <li><button type="button" class="btn btn-dark choice" value="C">C</button><span class="choice3"></span></li>
+                        </ul>
+                        <h3 class="result"></h3>
+                        <p class="answer"></p>
+                        <h3 class="score"></h3>
                     </div>
                 </div>
             </div>
@@ -49,10 +57,10 @@
                     <h3 class="card-header"></h3>
                     <div class="card-body"> </div>
 
-                    <div id="buttons">
-                        <button id="start">Start</button>
-                        <button id="stop">Stop</button>
-                        <button id="reset">Reset</button>
+                    <div class="buttons">
+                        <button class="start">Start</button>
+                        <button class="stop">Stop</button>
+                        <button class="reset">Reset</button>
                     </div>
                 </div>
             </div>
