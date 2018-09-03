@@ -3,7 +3,8 @@ $(document).ready(function () {
 
     window.onload = function () {
         $(".start").on("click", start);
-        $(".stop").on("click", stop);
+        $(".stop").on("click", stopAll);
+        $(".next").on("click", next);
         $(".reset").on("click", reset);
     };
 
@@ -24,15 +25,40 @@ $(document).ready(function () {
 
     }
     function start() {
+        isGameStarted = true;
         intervalId = setInterval(countDown, 1000);
         intervalId2 = setInterval(games, 1000);
     }
 
-    function stop() {
+    function next() {
+        if (isGameStarted) {
+            reset();
+            intervalId = setInterval(countDown, 1000);
+            intervalId2 = setInterval(games, 1000);
+            isNextChosen = true;
+        }
+        else {
+            stopAll();
+            reset();
+         
+        }
+    }
 
-        console.log("stopping");
+
+    function stopAll() {
+
+        console.log("stopping all");
         clearInterval(intervalId);
         clearInterval(intervalId2);
+
+    }
+
+
+    function stopCountDown() {
+
+        console.log("stopping countdown");
+        clearInterval(intervalId);
+
 
     }
 
@@ -45,6 +71,10 @@ $(document).ready(function () {
         $(".choice1").text("");
         $(".choice2").text("");
         $(".choice3").text("");
+        $(".result").text("");
+        $(".answer").text("");
+        $(".score").text("");
+    
 
     }
 
@@ -69,10 +99,14 @@ $(document).ready(function () {
 
     function games() {
 
-        for (let i = 0; i < questions.length; i++) {
-            playGame(questions[i], inputs[i]);
-            console.log(score);
-        }
+        // for (let i = 0; i < questions.length; i++) {
+        //     playGame(questions[i], inputs[i]);
+        //     console.log(score);
+        // }
+
+
+        questions[count].displayQuestion();
+        questions[count].displayChoices();
 
     }
 
@@ -84,17 +118,18 @@ $(document).ready(function () {
         this.answer = answer;
 
         this.displayQuestion = function () {
-            console.log(this.question);
-            $(".question").text(this.question);
+            // console.log(this.question);
+            let counter = count + 1;
+            $(".question").text(counter + ".  " + this.question);
         };
 
         this.displayChoices = function () {
             $(".choice1").text(this.choices[0]);
             $(".choice2").text(this.choices[1]);
             $(".choice3").text(this.choices[2]);
-            console.log(this.choices[0]);
-            console.log(this.choices[1]);
-            console.log(this.choices[2]);
+            // console.log(this.choices[0]);
+            // console.log(this.choices[1]);
+            // console.log(this.choices[2]);
         }
 
         this.displayAnswer = function () {
@@ -132,18 +167,6 @@ $(document).ready(function () {
     // -- main program
 
 
-    let firstNumber = 0;
-
-
-    $(".number").on("click", function () {
-        console.log($(this).val());
-        firstNumber += $(this).val();
-        $("#first-number").text(firstNumber);
-        console.log(firstNumber);
-        let result = firstNumber + 2;  // '2 '+ '2' = 22  string addition
-        console.log("result=" + result);
-    });
-
 
 
     let q1 = new Question("What is A?", ["A", "B", "C"], "A");
@@ -155,15 +178,18 @@ $(document).ready(function () {
 
     // let questions = [q1, q2, q3, q4];
     // let inputs = ["A", "A", "B", "A"];
-    let questions = [q1];
+    let questions = [q1, q2, q3];
     let inputs = ["A"];
 
-    let guesses=[];
+    let guesses = [];
     let score = 0;
+    let count = 0;
 
+    isGameStarted = false;
+    isNextChosen = false;
     let time = 16;
     reset();
-    
+
 
     // for (let i = 0; i < questions.length; i++) {
     //     playGame(questions[i], inputs[i]);
@@ -171,13 +197,43 @@ $(document).ready(function () {
     // }
 
     $(".choice").on("click", function () {
+        // stopCountDown();
+        stopAll();
+        isNextChosen = false;
         console.log($(this).val());
-        
+
         let guess = $(this).val();
         guesses.push(guess);
         console.log(guesses);
+
+        playGame(questions[count], guess);
+        console.log("outside " + count)
+
+
+        if (count === questions.length - 1) {
+            console.log("last one " + count)
+            isGameStarted = false;
+
+        }
+
+        if (count < questions.length - 1) {
+            console.log("outside2 " + count)
+            count++;
+            if (isNextChosen) {
+                console.log("inside " + count)
+                questions[count].displayQuestion();
+                questions[count].displayChoices();
+
+            }
+        }
+
+
+
+
+
+
     });
     console.log("final score = " + score);
-    
+
 
 });
