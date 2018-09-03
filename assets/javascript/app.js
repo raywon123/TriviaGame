@@ -45,7 +45,7 @@ $(document).ready(function () {
             }
         }
     }
-    
+
     function start() {
         isGameStarted = true;
         intervalId = setInterval(countDown, 1000);
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     function clear() {
 
-        time = 8;
+        time = TIMECOUNTDWN;
 
         $(".display").text("00:08");
         $(".question").text("");
@@ -102,7 +102,7 @@ $(document).ready(function () {
 
     function resetGame() {
 
-        time = 8;
+        time = TIMECOUNTDWN;
 
         $(".display").text("00:08");
         $(".question").text("");
@@ -228,7 +228,10 @@ $(document).ready(function () {
 
     isGameStarted = false;
     isNextChosen = false;
-    let time = 8;
+
+    const TIMECOUNTDWN = 8;
+    let time = TIMECOUNTDWN;
+
     resetGame();
 
 
