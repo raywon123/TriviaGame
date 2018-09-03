@@ -45,6 +45,7 @@ $(document).ready(function () {
             }
         }
     }
+    
     function start() {
         isGameStarted = true;
         intervalId = setInterval(countDown, 1000);
@@ -140,18 +141,30 @@ $(document).ready(function () {
         return minutes + ":" + seconds;
     }
 
+    // Game Logic
     function games() {
-
-        // for (let i = 0; i < questions.length; i++) {
-        //     playGame(questions[i], inputs[i]);
-        //     console.log(score);
-        // }
-
 
         questions[count].displayQuestion();
         questions[count].displayChoices();
 
     }
+
+    function playGame(question, guess) {
+        question.displayQuestion();
+        question.displayChoices();
+        if (guess === question.answer) {
+            score++;
+            console.log("Correct!");
+            $(".result").text("Correct!");
+            question.displayScore();
+        }
+        else {
+            console.log("Incorrect!");
+            $(".result").text("Incorrect!");
+            question.displayScore();
+        }
+    }
+
 
 
     // Object for Questions
@@ -178,28 +191,14 @@ $(document).ready(function () {
         this.displayAnswer = function () {
             console.log(this.answer);
         };
-    }
 
-    function playGame(question, guess) {
-        question.displayQuestion();
-        question.displayChoices();
-        if (guess === question.answer) {
-            score++;
-            console.log("Correct!");
-            $(".result").text("Correct!");
-            displayScore();
-        }
-        else {
-            console.log("Incorrect!");
-            $(".result").text("Incorrect!");
-            displayScore();
-        }
+        this.displayScore = function () {
+            $(".score").text("Score = " + score);
+        };
     }
 
 
-    function displayScore() {
-        $(".score").text("Score = " + score);
-    }
+
     // This function remove element from an array
     function removeElement(array, element) {
         let index = array.indexOf(element);
@@ -207,10 +206,9 @@ $(document).ready(function () {
             array.splice(index, 1);
         }
     }
+
+
     // -- main program
-
-
-
 
     let q1 = new Question("What is A?", ["A", "B", "C"], "A");
     let q2 = new Question("What is B?", ["A", "B", "C"], "B");
@@ -269,10 +267,6 @@ $(document).ready(function () {
 
             }
         }
-
-
-
-
 
 
     });
