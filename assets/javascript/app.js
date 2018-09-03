@@ -35,19 +35,20 @@ $(document).ready(function () {
     function start() {
         isGameStarted = true;
         intervalId = setInterval(countDown, 1000);
-        intervalId2 = setInterval(games, 1000);
+        intervalId2 = setInterval(display, 1000);
     }
 
     function next() {
         if (isGameStarted) {
             clear();
             intervalId = setInterval(countDown, 1000);
-            intervalId2 = setInterval(games, 1000);
+            intervalId2 = setInterval(display, 1000);
             isNextChosen = true;
         }
         else {
             stopAll();
             resetGame();
+            alert("Game Over. Please click Start to restart the game.");
 
         }
     }
@@ -62,14 +63,6 @@ $(document).ready(function () {
     }
 
 
-    function stopCountDown() {
-
-        console.log("stopping countdown");
-        clearInterval(intervalId);
-
-
-    }
-
     function clear() {
 
         time = TIMECOUNTDWN;
@@ -82,7 +75,6 @@ $(document).ready(function () {
         $(".result").text("");
         $(".answer").text("");
         $(".score").text("");
-
 
     }
 
@@ -119,10 +111,11 @@ $(document).ready(function () {
     }
 
     // Game Logic
-    function games() {
+    function display() {
 
         questions[count].displayQuestion();
         questions[count].displayChoices();
+        questions[count].displayScore();
 
     }
 
@@ -144,18 +137,18 @@ $(document).ready(function () {
 
     function gameLogic() {
         if (count === questions.length - 1) {
-            console.log("last one " + count)
+            console.log("last one " + count);
             isGameStarted = false;
 
         }
 
         if (count < questions.length - 1) {
-            console.log("outside2 " + count)
+            console.log("outside2 " + count);
             count++;
             if (isNextChosen) {
-                console.log("inside " + count)
-                questions[count].displayQuestion();
-                questions[count].displayChoices();
+                console.log("inside " + count);
+                display();
+
 
             }
         }
