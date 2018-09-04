@@ -23,10 +23,11 @@ $(document).ready(function () {
         let converted = timeConverter(time);
         $(".displayTime").text(converted);
 
-        if (time < 0) {          
+        if (time < 0) {   
+            isNextChosen = false;       
             stopAll();
             $(".displayTime").text("00:00");
-            $(".message").text("Time is Up");
+            $(".message").text("Time's up. Click Next to Continue.");
             gameLogic();
         }
     }
@@ -68,6 +69,7 @@ $(document).ready(function () {
         time = TIMECOUNTDWN;
 
         $(".displayTime").text("00:08");
+        $(".message").text("");
         $(".question").text("");
         $(".choice1").text("");
         $(".choice2").text("");
@@ -88,6 +90,7 @@ $(document).ready(function () {
 
         isGameStarted = false;
         isNextChosen = false;
+        $(".message").text("Please click Start to start the game. You have " + questions.length + " questions and " + TIMECOUNTDWN + " seconds for each question.");
 
     }
 
@@ -116,6 +119,7 @@ $(document).ready(function () {
         questions[count].displayQuestion();
         questions[count].displayChoices();
         questions[count].displayScore();
+        $(".message").text("");
 
     }
 
@@ -125,17 +129,18 @@ $(document).ready(function () {
         if (guess === question.answer) {
             score++;
             console.log("Correct!");
-            $(".result").text("Correct!");
+            $(".message").text("Correct! Click Next to Continue.");
             question.displayScore();
         }
         else {
             console.log("Incorrect!");
-            $(".result").text("Incorrect!");
+            $(".message").text("Incorrect! Click Next to Continue.");
             question.displayScore();
         }
     }
 
     function gameLogic() {
+        console.log("gamelogic count=" + count);
         if (count === questions.length - 1) {
             console.log("last one " + count);
             isGameStarted = false;
