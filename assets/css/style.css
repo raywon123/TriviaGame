@@ -2,53 +2,63 @@
  *
  **/
 
+
 * {
   box-sizing: border-box;
 }
 
-/*
-  The background color will be #ccc
-  at browser widths above 768px
-*/
-
 body {
-  /* Typography */
-  font-size: 18px;
-  line-height: 27px;
-  /* Visual */
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  /* background-image: url("../images/italian_dish.png"), url("../images/brown-paper.jpg");
+  background-repeat: no-repeat, repeat; */
+  background-image: url("../images/italian_dish.png");
+  background-repeat: no-repeat;
   background-color: #ccc;
+  background-size: cover;
+  size: 960px;
 }
 
-/*
-  The width of the wrapper will be 1024px
-  at browser widths above 768px
-*/
+h1, h2, h3 {
+  /* font-family: Georgia, Times, "Times New Roman", serif; */
+  font-family: 'Courgette', cursive;
+  font-weight: 700;
+  color: rgba(81, 194, 96, 0.836);
+  -webkit-text-stroke: 1px  rgba(81, 194, 96, 0.836);
+   color: #fff;
+   text-shadow:
+       1px 1px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
 
-.wrapper {
-  /* Box-model */
-  width: 1024px;
-  /* Positioning */
-  margin: 40px auto;
+
 }
 
-.main-content, .sidebar {
-  /* Box-model */
-  width: 500px;
-  padding: 30px;
+.question, .choice1, .choice2, .choice3 {
+ 
+  padding: 20px;
+  color: rgba(81, 194, 96, 0.836);
+  -webkit-text-stroke: 1px  rgba(81, 194, 96, 0.836);
+   color: #fff;
+   text-shadow:
+       1px 1px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+ 
 }
 
-.main-content {
-  /* Positioning */
-  float: left;
-  /* Visual */
-  background: #fff;
-}
-
-.sidebar {
-  /* Positioning */
+.displayTime {
   float: right;
-  /* Visual */
-  background: #eee;
+  font-weight: 700;
+  font-size: 30px;
+  padding: 20px;
+  color: lightcoral;
+  
 }
 
 .start {
@@ -60,4 +70,8 @@ body {
 .next {
   float: right;
   margin-right: 50px;
+}
+
+.btn {
+  margin: 5px;
 }

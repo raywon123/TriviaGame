@@ -18,7 +18,7 @@ $(document).ready(function () {
             isNextChosen = false;
             stopAll();
             $(".displayTime").text("00:00");
-            $(".message").text("Time's up The correct answer is " + questions[count].answer + ". Click Next to Continue.");
+            $(".message").text("Time's up! The correct answer is " + questions[count].answer + ". Click Next to Continue.");
             gamePlay();
         }
     }
@@ -131,12 +131,12 @@ $(document).ready(function () {
         if (guess === question.answer) {
             score++;
             console.log("Correct!");
-            $(".message").text("Correct! Click Next to Continue.");
+            $(".message").text("Correct Answer! Click Next to Continue.");
             question.displayScore();
         }
         else {
             console.log("Incorrect!");
-            $(".message").text("Incorrect! The correct answer is " + question.answer + ". Click Next to Continue.");
+            $(".message").text("Wrong Answer! The correct answer is " + question.answer + ". Click Next to Continue.");
             question.displayScore();
         }
     }
@@ -189,17 +189,92 @@ $(document).ready(function () {
 
     // -- main program
 
-    let q1 = new Question("What is A?", ["A", "B", "C"], "A");
-    let q2 = new Question("What is B?", ["A", "B", "C"], "B");
-    let q3 = new Question("What is C?", ["A", "B", "C"], "C");
-    let q4 = new Question("What is A?", ["A", "B", "C"], "A");
-    let q5 = new Question("What is B?", ["A", "B", "C"], "B");
-    let q6 = new Question("What is C?", ["A", "B", "C"], "C");
+    let q1 = new Question(
+        "Why does pasta sometimes come in such complex shapes?",
+        ["The wrinkles and ridges are better at clinging to different sauces.",
+            "The more complicated shapes can be cooked less thoroughly.",
+            "The intricate contours are purely for ascetic purposes."],
+        "A"
+    );
 
+
+    let q2 = new Question(
+        "What is the primary ingredient of pesto?",
+        ["Rosemary",
+            "Basil",
+            "Thyme"],
+        "B"
+    );
+
+    let q3 = new Question(
+        "Which oil is most common in Italian cuisine?",
+        ["Peanut oil",
+            "Sesame oil",
+            "Olive oil"],
+        "C"
+    );
+
+    let q4 = new Question(
+        "What's the difference between an Osteria and a Trattoria?",
+        ["Osteria is a more formal eating place than Trattoria.",
+            "Osteria is a less formal eating place than Trattoria.",
+            "Both are the same."],
+        "B"
+    );
+
+    let q5 = new Question(
+        "Which group contains an invalid pasta name?",
+        ["Lasagne, Spaghetti, Macaroni, Raioli",
+            "Rigatoni, Penne, Linguine, Vermicelli",
+            "Fettuccine, Tortellini, Alfredo, Risotto"],
+        "C"
+    );
+
+    let q6 = new Question(
+        "Who invented pizza?",
+        ["Persians",
+            "Greeks",
+            "Are you kidding me? The Italians, and don't you fuggedaboutit."],
+        "B"
+    );
+   
+    let q7 = new Question(
+        "Risotto is an Italian dish made out of _____?",
+        ["Rice",
+            "Pasta",
+            "Potato"],
+        "A"
+    );
+   
+    let q8 = new Question(
+        "Mozzarella cheese is a sliceable curd cheese originating in Italy. Traditional Mozzarella cheese is made from milk of ____?",
+        ["Goat",
+            "Llama",
+            "Water buffalo"],
+        "C"
+    );
+
+    let q9 = new Question(
+        "You find yourself in Lombardy, northern Italy. You are offered a glass of sparkling white wine that the locals are immensely proud of. What wine would this be?",
+        ["Tuscany",
+            "Piedmont",
+            "Franciacorta"],
+        "C"
+    );
+
+    let q10 = new Question(
+        " In the US, the terms marinara sauce and the following can be used almost interchangeably.",
+        ["Spaghetti sauce",
+            "Green sauce",
+            "Ragu sauce"],
+        "A"
+    );
+    
+    
     // let questions = [q1, q2, q3, q4];
     // let inputs = ["A", "A", "B", "A"];
 
-    let questions = [q1, q2, q3];
+    let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
 
     let guesses = [];
     let score = 0;
