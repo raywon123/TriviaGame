@@ -242,9 +242,9 @@ $(document).ready(function () {
         "Which group contains an invalid pasta name?",
         ["Lasagne, Spaghetti, Macaroni, Raioli",
             "Rigatoni, Penne, Linguine, Vermicelli",
-            "Fettuccine, Tortellini, Alfredo, Risotto"],
+            "Fettuccine, Tortellini, Alfredo, Calzone"],
         "C",
-        ""
+        "All are pasta names except Calzone. A calzone is an Italian oven-baked folded pizza that originated in Naples. A typical calzone is made from salted bread dough, baked in an oven and is stuffed with salami, ham or vegetables, mozzarella, ricotta and Parmesan or pecorino cheese, as well as an egg."
     );
 
     let q6 = new Question(
@@ -296,8 +296,8 @@ $(document).ready(function () {
     // let questions = [q1, q2, q3, q4];
     // let inputs = ["A", "A", "B", "A"];
 
-    // let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
-    let questions = [q1, q2, q3, q4];
+    let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+    // let questions = [q1, q2, q3, q4];
 
     let guesses = [];
     let score = 0;
