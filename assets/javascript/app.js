@@ -18,7 +18,9 @@ $(document).ready(function () {
             isNextChosen = false;
             stopAll();
             $(".displayTime").text("00:00");
-            $(".message").text("Time's up! The correct answer is " + questions[count].answer + ". Click Next to Continue.");
+            $(".message").text("Time's up! Click Next to Continue.");
+            $(".answer").text("The correct answer is " + questions[count].answer + ".");
+            $(".explanation").text(questions[count].explain);
             gamePlay();
         }
     }
@@ -69,7 +71,7 @@ $(document).ready(function () {
         $(".choice1").text("");
         $(".choice2").text("");
         $(".choice3").text("");
-        $(".result").text("");
+        $(".explanation").text("");
         $(".answer").text("");
         $(".score").text("");
 
@@ -131,12 +133,16 @@ $(document).ready(function () {
         if (guess === question.answer) {
             score++;
             console.log("Correct!");
-            $(".message").text("Correct Answer! Click Next to Continue.");
+            $(".message").text("Click Next to Continue.");
+            $(".answer").text("Correct Answer!");
+            $(".explanation").text(questions[count].explain);
             question.displayScore();
         }
         else {
             console.log("Incorrect!");
-            $(".message").text("Wrong Answer! The correct answer is " + question.answer + ". Click Next to Continue.");
+            $(".message").text("Click Next to Continue.");
+            $(".answer").text("Wrong Answer! The correct answer is " + question.answer + ".");
+            $(".explanation").text(questions[count].explain);
             question.displayScore();
         }
     }
@@ -160,10 +166,11 @@ $(document).ready(function () {
 
 
     // Object for Questions
-    function Question(question, choices, answer) {
+    function Question(question, choices, answer, explain) {
         this.question = question;
         this.choices = choices;
         this.answer = answer;
+        this.explain = explain;
 
         this.displayQuestion = function () {
             // console.log(this.question);
@@ -194,7 +201,8 @@ $(document).ready(function () {
         ["The wrinkles and ridges are better at clinging to different sauces.",
             "The more complicated shapes can be cooked less thoroughly.",
             "The intricate contours are purely for ascetic purposes."],
-        "A"
+        "A",
+        "Pasta is often highly textured and intricately shaped because that makes it better at holding onto sauces."
     );
 
 
@@ -203,7 +211,8 @@ $(document).ready(function () {
         ["Rosemary",
             "Basil",
             "Thyme"],
-        "B"
+        "B",
+        "Although rosemary and thyme are used frequently in Italian cooking, pesto sauce is traditionally made from fresh basil."
     );
 
     let q3 = new Question(
@@ -211,7 +220,8 @@ $(document).ready(function () {
         ["Peanut oil",
             "Sesame oil",
             "Olive oil"],
-        "C"
+        "C",
+        "Olive oil is by far the most commonly used oil in Italian cuisine, especially in the form of extra virgin olive oil. The quality of extra virgin olive oil varies depending on a number of factors, including the point when the olives are harvested to the method used for processing them."
     );
 
     let q4 = new Question(
@@ -219,7 +229,8 @@ $(document).ready(function () {
         ["Osteria is a more formal eating place than Trattoria.",
             "Osteria is a less formal eating place than Trattoria.",
             "Both are the same."],
-        "B"
+        "B",
+        "A trattoria is an Italian-style eating establishment, less formal than a ristorante, but more formal than an osteria. There are generally no printed menus, the service is casual, wine is sold by the decanter rather than the bottle, prices are low, and the emphasis is on a steady clientele rather than on haute cuisine. The food is modest but plentiful (mostly following regional and local recipes) and in some instances is even served family-style. "
     );
 
     let q5 = new Question(
@@ -227,7 +238,8 @@ $(document).ready(function () {
         ["Lasagne, Spaghetti, Macaroni, Raioli",
             "Rigatoni, Penne, Linguine, Vermicelli",
             "Fettuccine, Tortellini, Alfredo, Risotto"],
-        "C"
+        "C",
+        ""
     );
 
     let q6 = new Question(
@@ -235,7 +247,8 @@ $(document).ready(function () {
         ["Persians",
             "Greeks",
             "Are you kidding me? The Italians, and don't you fuggedaboutit."],
-        "B"
+        "B",
+        "It is common belief that pizza was an invention by the Italians. However, the history of pizza goes back to the ancient times in the Middle East. The Greeks, Egyptians, Armenians, Israelis, and Babylonians were making some derivative of pizza in the ancient times. They would cook flat bread in mud ovens. It was back in the year 1522 when tomatoes were brought back to Europe all the way from Peru. The poorer people of Naples of Italy initially thought the fruit to be poisonous but later consumed it by placing it over their yeast dough and giving birth to a crude form of pizza. "
     );
    
     let q7 = new Question(
@@ -243,7 +256,8 @@ $(document).ready(function () {
         ["Rice",
             "Pasta",
             "Potato"],
-        "A"
+        "A",
+        "Risotto is a northern Italian rice dish cooked in a broth to a creamy consistency. The broth can be derived from meat, fish, or vegetables. Many types of risotto contain butter, wine, onion, and parmesan cheese. It is one of the most common ways of cooking rice in Italy. "
     );
    
     let q8 = new Question(
@@ -251,7 +265,8 @@ $(document).ready(function () {
         ["Goat",
             "Llama",
             "Water buffalo"],
-        "C"
+        "C",
+        "Mozzarella is a traditionally southern Italian cheese made from Italian water buffalo's milk herded in very few countries such as Italy and Bulgaria. However, most of the Mozzarella cheeses available now are made from cow's milk."
     );
 
     let q9 = new Question(
@@ -259,7 +274,8 @@ $(document).ready(function () {
         ["Tuscany",
             "Piedmont",
             "Franciacorta"],
-        "C"
+        "C",
+        "Franciacorta and Prosecco are both Itanlian sparling wines. Franciacorta is produced using the ‘traditional method’ – the same as for Champagne – with a secondary fermentation taking place in the bottle. Contrastingly, most Prosecco is made using the ‘tank method’, where secondary fermentation takes place in stainless steel tanks before bottling."
     );
 
     let q10 = new Question(
@@ -267,14 +283,16 @@ $(document).ready(function () {
         ["Spaghetti sauce",
             "Green sauce",
             "Ragu sauce"],
-        "A"
+        "A",
+        "Marinara sauce is an Italian tomato sauce, usually made with tomatoes, garlic, herbs, and onions.Its many variations can include the addition of capers, olives, spices, and a dash of wine."
     );
     
     
     // let questions = [q1, q2, q3, q4];
     // let inputs = ["A", "A", "B", "A"];
 
-    let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+    // let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+    let questions = [q1, q2, q3, q4];
 
     let guesses = [];
     let score = 0;

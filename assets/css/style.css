@@ -43,7 +43,7 @@ h1, h2, h3 {
   text-align: center;
   padding: 20px;
 }
-.question, .choice1, .choice2, .choice3 {
+.question, .choice1, .choice2, .choice3, .explanation {
  
   padding: 20px;
   color: rgba(81, 194, 96, 0.836);
@@ -58,6 +58,9 @@ h1, h2, h3 {
  
 }
 
+.explanation {
+  padding: 0px;
+}
 .displayTime {
   float: right;
   font-weight: 700;
