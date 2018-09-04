@@ -12,12 +12,12 @@ $(document).ready(function () {
 
         time--;
         let converted = timeConverter(time);
-        $(".displayTime").text(converted);
+        $(".displayTime").text("Timer: " + converted);
 
         if (time < 0) {
             isNextChosen = false;
             stopAll();
-            $(".displayTime").text("00:00");
+            $(".displayTime").text("Timer: 00:00");
             $(".message").text("Time's up! Click Next to Continue.");
             $(".answer").text("The correct answer is " + questions[count].answer + ".");
             $(".explanation").text(questions[count].explain);
@@ -66,7 +66,7 @@ $(document).ready(function () {
         time = TIMECOUNTDWN;
 
         let converted = timeConverter(time);
-        $(".displayTime").text(converted);
+        $(".displayTime").text("Timer: " + converted);
         $(".question").text("");
         $(".choice1").text("");
         $(".choice2").text("");
@@ -189,7 +189,7 @@ $(document).ready(function () {
         };
 
         this.displayScore = function () {
-            $(".score").text("Score = " + score);
+            $(".score").text("Score : " + score + " / " + questions.length);
         };
     }
 
