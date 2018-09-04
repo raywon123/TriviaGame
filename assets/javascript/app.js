@@ -18,7 +18,7 @@ $(document).ready(function () {
             isNextChosen = false;
             stopAll();
             $(".displayTime").text("00:00");
-            $(".message").text("Time's up. Click Next to Continue.");
+            $(".message").text("Time's up The correct answer is " + questions[count].answer + ". Click Next to Continue.");
             gamePlay();
         }
     }
@@ -79,7 +79,7 @@ $(document).ready(function () {
 
         clearQuestion();
         $(".message").text("");
-    
+
     }
 
     function resetGame() {
@@ -136,7 +136,7 @@ $(document).ready(function () {
         }
         else {
             console.log("Incorrect!");
-            $(".message").text("Incorrect! Click Next to Continue.");
+            $(".message").text("Incorrect! The correct answer is " + question.answer + ". Click Next to Continue.");
             question.displayScore();
         }
     }
