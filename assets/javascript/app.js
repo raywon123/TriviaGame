@@ -16,6 +16,7 @@ $(document).ready(function () {
 
         if (time < 0) {
             isNextChosen = false;
+            isChoiceChosen = true;
             stopAll();
             $(".displayTime").text("Timer: 00:00");
             $(".message").text("Time's up! Click Next to Continue.");
@@ -35,11 +36,12 @@ $(document).ready(function () {
     }
 
     function next() {
-        if (isGameStarted && !isNextChosen) {
+        if (isGameStarted && !isNextChosen && isChoiceChosen) {
             clear();
             intervalId = setInterval(countDown, 1000);
             intervalId2 = setInterval(display, 300);
             isNextChosen = true;
+            isChoiceChosen = false;
         }
         if (!isGameStarted) {
             let finalscore = score;
@@ -92,6 +94,7 @@ $(document).ready(function () {
 
         isGameStarted = false;
         isNextChosen = false;
+        isChoiceChosen = false;
 
         clear();
         $(".message").text("Please click Start to start the game. You have " + questions.length + " questions and " + TIMECOUNTDWN + " seconds for each question.");
@@ -300,6 +303,7 @@ $(document).ready(function () {
 
     isGameStarted = false;
     isNextChosen = false;
+    isChoiceChosen = false;
 
     const TIMECOUNTDWN = 8;
     let time = TIMECOUNTDWN;
@@ -314,9 +318,10 @@ $(document).ready(function () {
 
     $(".choice").on("click", function () {
 
-        if (isGameStarted) {
+        if (isGameStarted && !isChoiceChosen) {
             stopAll();
             isNextChosen = false;
+            isChoiceChosen = true;
             console.log($(this).val());
 
             let guess = $(this).val();
