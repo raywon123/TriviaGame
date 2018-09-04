@@ -50,3 +50,14 @@ body {
   /* Visual */
   background: #eee;
 }
+
+.start {
+  width: 150px;
+  margin-left: 20px;
+  margin-right: 20px
+}
+
+.next {
+  float: right;
+  margin-right: 50px;
+}

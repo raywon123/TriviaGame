@@ -2,9 +2,9 @@ $(document).ready(function () {
 
     window.onload = function () {
         $(".start").on("click", start);
-        $(".stop").on("click", stopAll);
+        // $(".stop").on("click", stopAll);
         $(".next").on("click", next);
-        $(".reset").on("click", resetGame);
+        // $(".reset").on("click", resetGame);
     };
 
 
