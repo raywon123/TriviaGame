@@ -19,12 +19,13 @@ $(document).ready(function () {
             stopAll();
             $(".displayTime").text("00:00");
             $(".message").text("Time's up. Click Next to Continue.");
-            gameLogic();
+            gamePlay();
         }
     }
 
     function start() {
         if (!isGameStarted) {
+            resetGame();
             isGameStarted = true;
             intervalId = setInterval(countDown, 1000);
             intervalId2 = setInterval(display, 300);
@@ -32,16 +33,17 @@ $(document).ready(function () {
     }
 
     function next() {
-        if (isGameStarted) {
+        if (isGameStarted && !isNextChosen) {
             clear();
             intervalId = setInterval(countDown, 1000);
             intervalId2 = setInterval(display, 300);
             isNextChosen = true;
         }
-        else {
+        if (!isGameStarted) {
             let finalscore = score;
             stopAll();
-            resetGame();
+            clearQuestion();
+            // resetGame();
             // alert("Game Over. Please click Start to restart the game.");
             $(".message").text("Game Over. Your score is " + finalscore + " out of " + questions.length + ". Please click Start to restart the game.");
 
@@ -57,14 +59,12 @@ $(document).ready(function () {
 
     }
 
-
-    function clear() {
+    function clearQuestion() {
 
         time = TIMECOUNTDWN;
 
         let converted = timeConverter(time);
         $(".displayTime").text(converted);
-        $(".message").text("");
         $(".question").text("");
         $(".choice1").text("");
         $(".choice2").text("");
@@ -73,6 +73,13 @@ $(document).ready(function () {
         $(".answer").text("");
         $(".score").text("");
 
+    }
+
+    function clear() {
+
+        clearQuestion();
+        $(".message").text("");
+    
     }
 
     function resetGame() {
@@ -108,7 +115,7 @@ $(document).ready(function () {
         return minutes + ":" + seconds;
     }
 
-    // Game Logic
+    // game play logic
     function display() {
 
         questions[count].displayQuestion();
@@ -118,7 +125,7 @@ $(document).ready(function () {
 
     }
 
-    function playGame(question, guess) {
+    function checkAnswer(question, guess) {
         question.displayQuestion();
         question.displayChoices();
         if (guess === question.answer) {
@@ -134,8 +141,8 @@ $(document).ready(function () {
         }
     }
 
-    function gameLogic() {
-        console.log("gamelogic count=" + count);
+    function gamePlay() {
+        console.log("game count=" + count);
         if (count === questions.length - 1) {
             console.log("last one " + count);
             isGameStarted = false;
@@ -208,22 +215,24 @@ $(document).ready(function () {
 
 
     // for (let i = 0; i < questions.length; i++) {
-    //     playGame(questions[i], inputs[i]);
+    //     checkAnswer(questions[i], inputs[i]);
     //     console.log(score);
     // }
 
     $(".choice").on("click", function () {
 
-        stopAll();
-        isNextChosen = false;
-        console.log($(this).val());
+        if (isGameStarted) {
+            stopAll();
+            isNextChosen = false;
+            console.log($(this).val());
 
-        let guess = $(this).val();
-        guesses.push(guess);
-        console.log(guesses);
+            let guess = $(this).val();
+            guesses.push(guess);
+            console.log(guesses);
 
-        playGame(questions[count], guess);
-        gameLogic();
+            checkAnswer(questions[count], guess);
+            gamePlay();
+        }
 
     });
 
