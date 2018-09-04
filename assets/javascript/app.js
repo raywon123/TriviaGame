@@ -280,16 +280,16 @@ $(document).ready(function () {
             "Piedmont",
             "Franciacorta"],
         "C",
-        "Franciacorta and Prosecco are both Itanlian sparling wines. Franciacorta is produced using the ‘traditional method’ – the same as for Champagne – with a secondary fermentation taking place in the bottle. Contrastingly, most Prosecco is made using the ‘tank method’, where secondary fermentation takes place in stainless steel tanks before bottling."
+        "Franciacorta and Prosecco are both Itanlian sparkling wines. Franciacorta is produced using the ‘traditional method’ – the same as for Champagne – with a secondary fermentation taking place in the bottle. Contrastingly, most Prosecco is made using the ‘tank method’, where secondary fermentation takes place in stainless steel tanks before bottling."
     );
 
     let q10 = new Question(
         " In the US, the terms marinara sauce and the following can be used almost interchangeably.",
         ["Spaghetti sauce",
-            "Green sauce",
+            "Pesto sauce",
             "Ragu sauce"],
         "A",
-        "Marinara sauce is an Italian tomato sauce, usually made with tomatoes, garlic, herbs, and onions.Its many variations can include the addition of capers, olives, spices, and a dash of wine."
+        "Marinara sauce is an Italian tomato sauce, usually made with tomatoes, garlic, herbs, and onions.Its many variations can include the addition of capers, olives, spices, and a dash of wine. Pesto sauce is made with basil, coarse salt, garlic and olive oil. Ragu or Bolognese sauce is a meat-based sauce originating form Bologna. "
     );
     
     
