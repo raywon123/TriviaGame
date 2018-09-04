@@ -130,23 +130,25 @@ $(document).ready(function () {
 
     }
 
+    function displayExplanation() {
+        $(".message").text("Click Next to Continue.");
+        $(".explanation").text(questions[count].explain);
+        questions[count].displayScore();
+    }
+
     function checkAnswer(question, guess) {
         question.displayQuestion();
         question.displayChoices();
         if (guess === question.answer) {
             score++;
             console.log("Correct!");
-            $(".message").text("Click Next to Continue.");
             $(".answer").text("Correct Answer!");
-            $(".explanation").text(questions[count].explain);
-            question.displayScore();
+            displayExplanation();
         }
         else {
             console.log("Incorrect!");
-            $(".message").text("Click Next to Continue.");
             $(".answer").text("Wrong Answer! The correct answer is " + question.answer + ".");
-            $(".explanation").text(questions[count].explain);
-            question.displayScore();
+            displayExplanation();
         }
     }
 
