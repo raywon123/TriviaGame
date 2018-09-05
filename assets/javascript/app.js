@@ -129,7 +129,6 @@ $(document).ready(function () {
     // adding buttons
     function addBtns() {
 
-
         // let c = $("<button>");
         // c.addClass("btn btn-success choice");
         // c.attr("data-name", "C");
@@ -331,8 +330,8 @@ $(document).ready(function () {
     // let questions = [q1, q2, q3, q4];
     // let inputs = ["A", "A", "B", "A"];
 
-    // let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
-    let questions = [q1, q2, q3, q4];
+    let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+    // let questions = [q1, q2, q3, q4];
 
     let guesses = [];
     let score = 0;

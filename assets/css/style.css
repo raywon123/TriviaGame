@@ -2,7 +2,6 @@
  *
  **/
 
-
 * {
   box-sizing: border-box;
 }
@@ -11,8 +10,6 @@ body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 20px;
   line-height: 24px;
-  /* background-image: url("../images/italian_dish.png"), url("../images/brown-paper.jpg");
-  background-repeat: no-repeat, repeat; */
   background-image: url("../images/italian_dish.png");
   background-repeat: no-repeat;
   background-color: #ccc;
@@ -25,16 +22,9 @@ h1, h2, h3 {
   font-family: 'Courgette', cursive;
   font-weight: 700;
   color: rgba(81, 194, 96, 0.836);
-  -webkit-text-stroke: 1px  rgba(81, 194, 96, 0.836);
-   color: #fff;
-   text-shadow:
-       1px 1px 0 #000,
-     -1px -1px 0 #000,  
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-       1px 1px 0 #000;
-
-
+  -webkit-text-stroke: 1px rgba(81, 194, 96, 0.836);
+  color: #fff;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .header-top {
@@ -43,21 +33,21 @@ h1, h2, h3 {
   text-align: center;
   padding: 20px;
 }
+
 .question, .choice1, .choice2, .choice3, .choicex, .explanation {
- 
   padding: 20px;
+  font-weight: 500;
   color: rgba(81, 194, 96, 0.836);
-  -webkit-text-stroke: 1px  rgba(81, 194, 96, 0.836);
-   color: #fff;
-   text-shadow:
-       1px 1px 0 #000,
-     -1px -1px 0 #000,  
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-       1px 1px 0 #000;
- 
+  -webkit-text-stroke: 1px rgba(81, 194, 96, 0.836);
+  color: #fff;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+.question {
+  font-size: 24px;
+  padding: 5px;
+  margin-top: 20px;
+}
 
 .explanation {
   padding: 0px;
@@ -69,7 +59,6 @@ h1, h2, h3 {
   font-size: 30px;
   padding: 20px;
   color: lightcoral;
-  
 }
 
 .score {
@@ -78,14 +67,9 @@ h1, h2, h3 {
   font-size: 30px;
   padding: 20px;
   color: green;
-  -webkit-text-stroke: 1px  rgba(81, 194, 96, 0.836);
+  -webkit-text-stroke: 1px rgba(81, 194, 96, 0.836);
   color: #fff;
-  text-shadow:
-      1px 1px 0 #000,
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-      1px 1px 0 #000;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .start {
