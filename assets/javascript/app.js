@@ -32,6 +32,8 @@ $(document).ready(function () {
             isGameStarted = true;
             intervalId = setInterval(countDown, 1000);
             intervalId2 = setInterval(display, 300);
+            addBtns();
+
         }
     }
 
@@ -40,13 +42,17 @@ $(document).ready(function () {
             clear();
             intervalId = setInterval(countDown, 1000);
             intervalId2 = setInterval(display, 300);
+            addBtns();
             isNextChosen = true;
             isChoiceChosen = false;
+
+
         }
         if (!isGameStarted) {
             let finalscore = score;
             stopAll();
             clearQuestion();
+            $(".buttons").empty();
             // resetGame();
             // alert("Game Over. Please click Start to restart the game.");
             $(".message").text("Game Over. Your score is " + finalscore + " out of " + questions.length + ". Please click Start to restart the game.");
@@ -120,25 +126,33 @@ $(document).ready(function () {
         return minutes + ":" + seconds;
     }
 
+    // adding buttons
+    function addBtns() {
+
+
+        // let c = $("<button>");
+        // c.addClass("btn btn-success choice");
+        // c.attr("data-name", "C");
+        // c.text("C");
+        // let ctext = $("<span class=\"choice1\">" + questions[0].choices[0] + "</span>");
+        // $(".buttons").append(c);
+        // $(".buttons").append(ctext);
+
+        $(".buttons").empty();
+        console.log("inside button" + count);
+        let a = $("<p><button type=\"button\" class=\"btn btn-success choice\" value=\"A\" data-id=\"A\">A</button><span class=\"choicex\">" + questions[count].choices[0] + "</span></p>");
+        let b = $("<p><button type=\"button\" class=\"btn btn-success choice\" value=\"B\" data-id=\"B\">B</button><span class=\"choicex\">" + questions[count].choices[1] + "</span></p>");
+        let c = $("<p><button type=\"button\" class=\"btn btn-success choice\" value=\"C\" data-id=\"C\">C</button><span class=\"choicex\">" + questions[count].choices[2] + "</span></p>");
+        $(".buttons").append(a);
+        $(".buttons").append(b);
+        $(".buttons").append(c);
+
+    }
+
     // game play logic
-    function display() {
-
-        questions[count].displayQuestion();
-        questions[count].displayChoices();
-        questions[count].displayScore();
-        $(".message").text("");
-
-    }
-
-    function displayExplanation() {
-        $(".message").text("Click Next to Continue.");
-        $(".explanation").text(questions[count].explain);
-        questions[count].displayScore();
-    }
 
     function checkAnswer(question, guess) {
-        question.displayQuestion();
-        question.displayChoices();
+
         if (guess === question.answer) {
             score++;
             console.log("Correct!");
@@ -153,22 +167,41 @@ $(document).ready(function () {
     }
 
     function gamePlay() {
-        console.log("game count=" + count);
+        console.log("game play count=" + count);
         if (count === questions.length - 1) {
             console.log("last one " + count);
             isGameStarted = false;
         }
 
         if (count < questions.length - 1) {
-            console.log("outside2 " + count);
+            console.log("game play less count= " + count);
             count++;
             if (isNextChosen) {
-                console.log("inside " + count);
+                console.log("game play less isNextChose count= " + count);
+                addBtns();
                 display();
+
+
             }
         }
     }
 
+    // display
+    function display() {
+
+        questions[count].displayQuestion();
+        questions[count].displayChoices(); // can be removed
+        questions[count].displayScore();
+        $(".message").text("");
+
+
+    }
+
+    function displayExplanation() {
+        $(".message").text("Click Next to Continue.");
+        $(".explanation").text(questions[count].explain);
+        questions[count].displayScore();
+    }
 
     // Object for Questions
     function Question(question, choices, answer, explain) {
@@ -183,10 +216,12 @@ $(document).ready(function () {
             $(".question").text(counter + ".  " + this.question);
         };
 
+        // can be removed
         this.displayChoices = function () {
             $(".choice1").text(this.choices[0]);
             $(".choice2").text(this.choices[1]);
             $(".choice3").text(this.choices[2]);
+
         }
 
         this.displayAnswer = function () {
@@ -255,7 +290,7 @@ $(document).ready(function () {
         "B",
         "It is common belief that pizza was an invention by the Italians. However, the history of pizza goes back to the ancient times in the Middle East. The Greeks, Egyptians, Armenians, Israelis, and Babylonians were making some derivative of pizza in the ancient times. They would cook flat bread in mud ovens. It was back in the year 1522 when tomatoes were brought back to Europe all the way from Peru. The poorer people of Naples of Italy initially thought the fruit to be poisonous but later consumed it by placing it over their yeast dough and giving birth to a crude form of pizza. "
     );
-   
+
     let q7 = new Question(
         "Risotto is an Italian dish made out of _____?",
         ["Rice",
@@ -264,7 +299,7 @@ $(document).ready(function () {
         "A",
         "Risotto is a northern Italian rice dish cooked in a broth to a creamy consistency. The broth can be derived from meat, fish, or vegetables. Many types of risotto contain butter, wine, onion, and parmesan cheese. It is one of the most common ways of cooking rice in Italy. "
     );
-   
+
     let q8 = new Question(
         "Mozzarella cheese is a sliceable curd cheese originating in Italy. Traditional Mozzarella cheese is made from milk of ____?",
         ["Goat",
@@ -291,13 +326,13 @@ $(document).ready(function () {
         "A",
         "Marinara sauce is an Italian tomato sauce, usually made with tomatoes, garlic, herbs, and onions.Its many variations can include the addition of capers, olives, spices, and a dash of wine. Pesto sauce is made with basil, coarse salt, garlic and olive oil. Ragu or Bolognese sauce is a meat-based sauce originating form Bologna. "
     );
-    
-    
+
+
     // let questions = [q1, q2, q3, q4];
     // let inputs = ["A", "A", "B", "A"];
 
-    let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
-    // let questions = [q1, q2, q3, q4];
+    // let questions = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+    let questions = [q1, q2, q3, q4];
 
     let guesses = [];
     let score = 0;
@@ -318,7 +353,28 @@ $(document).ready(function () {
     //     console.log(score);
     // }
 
-    $(".choice").on("click", function () {
+    // using buttons already in HTML
+    // $(".choice").on("click", function () {
+
+    //     if (isGameStarted && !isChoiceChosen) {
+    //         stopAll();
+    //         isNextChosen = false;
+    //         isChoiceChosen = true;
+    //         console.log($(this).val());
+
+    //         let guess = $(this).val();
+    //         guesses.push(guess);
+    //         console.log(guesses);
+
+    //         checkAnswer(questions[count], guess);
+    //         gamePlay();
+    //     }
+
+    // });
+
+    // using daynamicly created buttons
+    $(".buttons").on("click", ".choice", function () {
+
 
         if (isGameStarted && !isChoiceChosen) {
             stopAll();
@@ -326,7 +382,9 @@ $(document).ready(function () {
             isChoiceChosen = true;
             console.log($(this).val());
 
-            let guess = $(this).val();
+            let guess = $(this).data('id');
+            console.log("Selected ID:" + guess);
+            console.log("click button count=" + count);
             guesses.push(guess);
             console.log(guesses);
 
